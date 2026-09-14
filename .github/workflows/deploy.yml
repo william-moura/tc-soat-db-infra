@@ -3,10 +3,10 @@ name: Deploy Database Infrastructure
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   terraform:
@@ -29,18 +29,26 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # Essencial para o ambiente AWS Academy
           aws-region: us-east-1
-
-      - name: Terraform Init
-        run: terraform init
-
-      - name: Terraform Format & Validate
+          
+      - name: Terraform Init & Apply
         run: |
-          terraform fmt -check
-          terraform validate
+          terraform init
+          terraform apply -auto-approve \
+            -var="db_name=techchallenge" \
+            -var="db_user=dbadmin" \
+            -var="db_password=${{ secrets.DB_PASSWORD }}"
 
-      - name: Terraform Plan
-        run: terraform plan -no-color
+      # - name: Terraform Init
+      #   run: terraform init
 
-      - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+      # - name: Terraform Format & Validate
+      #   run: |
+      #     terraform fmt -check
+      #     terraform validate
+
+      # - name: Terraform Plan
+      #   run: terraform plan -no-color
+
+      # - name: Terraform Apply
+      #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      #   run: terraform apply -auto-approve
