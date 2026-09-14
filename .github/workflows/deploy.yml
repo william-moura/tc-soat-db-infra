@@ -29,13 +29,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # Essencial para o ambiente AWS Academy
           aws-region: us-east-1
-          
+
       - name: Terraform Init & Apply
         run: |
           terraform init
           terraform apply -auto-approve \
             -var="db_name=techchallenge" \
-            -var="db_user=dbadmin" \
+            -var="db_username=dbadmin" \
             -var="db_password=${{ secrets.DB_PASSWORD }}"
 
       # - name: Terraform Init
