@@ -65,3 +65,8 @@ resource "aws_db_instance" "mysql" {
   publicly_accessible    = true
   storage_encrypted      = false # Evita rejeição de KMS key no Academy
 }
+
+import {
+  to = aws_db_instance.mysql
+  id = "tc-soat-db"
+}
