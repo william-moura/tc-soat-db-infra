@@ -8,13 +8,13 @@ variable "db_name" {
   description = "Nome do banco de dados inicial"
 }
 
-variable "db_username" {
+variable "db_user" {
   default     = "dbadmin"
   description = "Usuário master do banco"
 }
 
 variable "db_password" {
-  default     = "SenhaSuperSegura123!"
+  type        = string
   sensitive   = true
   description = "Senha master do banco de dados"
 }
