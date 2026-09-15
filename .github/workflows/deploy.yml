@@ -1,9 +1,6 @@
 name: Deploy Database Infrastructure
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
