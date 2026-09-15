@@ -26,7 +26,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }} # Essencial para o ambiente AWS Academy
           aws-region: us-east-1
-          
+
       - name: Terraform Init & Apply
         run: |
           terraform init
