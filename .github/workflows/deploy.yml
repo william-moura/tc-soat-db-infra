@@ -32,7 +32,7 @@ jobs:
           terraform init
           terraform apply -auto-approve \
             -var="db_name=techchallenge" \
-            -var="db_username=dbadmin" \
+            -var="db_user=dbadmin" \
             -var="db_password=${{ secrets.DB_PASSWORD }}"
 
       # - name: Terraform Init
